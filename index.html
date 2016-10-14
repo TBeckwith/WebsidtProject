@@ -1,0 +1,131 @@
+<!DOCKTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>How to Make An External LED light Blink With Arduino</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <header>
+      <h1>How To Make An External LED Blink With Arduino</h1>
+      <h2>By Cornel Amariei</h2>
+    </header>
+    <section id="b">
+      <h3 id="before">Before You Start</h3>
+      <div id="intro">      
+        <p>It is easy to make the LED blink on an Arduino. We turn it on, wait, turn it off, wait again, and
+then we repeat the cycle.</p> 
+<p>
+The Arduino boards come with an internal LED connected to pin 13. It is simple to
+use and always there. But most times we want our own LEDs in different places of our system.
+We might connect something on top of the Arduino board and can no longer see the internal
+LED. Here, we will explore how to connect an external LED.</p>
+      </div>
+    </section>
+    <section id="getting_ready">
+      <h3>Getting Ready</h3>
+      <p> 
+        For this recipe, we need the following ingredients:
+    An Arduino board connected to the computer via USB
+    A breadboard and jumper wires
+    A regular LED (the typical LED size is 3 mm)
+    A resistor between 220–1,000 ohm
+      </p>
+    </section>
+    <section>
+      <h3>How To Do It</h3>
+      <h4>Follow these steps to connect an external LED to an Arduino board:</h4>
+      <ol>
+        <li>Mount the resistor on the breadboard. Connect one end of the resistor to a digital pin on the Arduino board using a jumper wire./li>
+        <li>Mount the LED on the breadboard. Connect the anode (+) pin of the LED to the
+    available pin on the resistor. We can determine the anode on the LED in two ways.
+    Usually, the longer pin is the anode. Another way is to look for the flat edge on the
+    outer casing of the LED. The pin next to the flat edge is the cathode (-).</li>
+        <li>Connect the LED cathode (-) to the Arduino GND using jumper wires.</li>
+      </ol>
+      <div>
+      <p>Schematic</p>
+      <img src="schematic.png" id="img1">
+      
+      <img src="wiring.png" id="img2">
+      <p id="caption1">One possible implementation on the second digital pin. Other digital pins can also
+be used.</p>
+      <p>A simple way of wiring the LED.</p>
+      </div>
+    </section>
+    <secion>
+    <h3>The following code will make the external LED blink:</h3>
+    <p>/****Code
+
+
+    // Declare the LED pin
+    int LED = 2;
+    void setup() {
+    // Declare the pin for the LED as Output
+        pinMode(LED, OUTPUT);
+    }
+    void loop(){
+    // Here we will turn the LED ON and wait 200 milliseconds
+        digitalWrite(LED, HIGH);
+        delay(200);
+    // Here we will turn the LED OFF and wait 200 milliseconds
+        digitalWrite(LED, LOW);
+        delay(200);
+    }</p>
+    <p>HELPFUL NOTE : If the LED is connected to a different pin, simply change the LED value to
+the value of the pin that has been used.</p>
+    </secion>
+    <section>
+      <h3>How It Works</h3>
+      <p>This is all semiconductor magic. When the second digital pin is set to HIGH , the Arduino
+provides 5 V of electricity, which travels through the resistor to the LED and GND. When
+enough voltage and current is present, the LED will light up. The resistor limits the amount
+of current passing through the LED. Without it, it is possible that the LED (or worse, the
+Arduino pin) will burn. Try to avoid using LEDs without resistors; this can easily destroy the
+LED or even your Arduino.</p>
+      <h4>Code Breakdown</h4>
+      <p>
+The code simply turns the LED on, waits, and then turns it off again. Compared to the
+previous recipe, in this one we will use a blocking approach by using the delay() function.
+Here we declare the LED pin on digital pin 2:
+    int LED = 2;
+    
+    In the setup() function we set the LED pin as an output:
+    
+    void setup() {
+        pinMode(LED, OUTPUT);
+    }
+
+In the loop() function, we continuously turn the LED on, wait 200 milliseconds, and then
+we turn it off. After turning it off we need to wait another 200 milliseconds, otherwise it will
+instantaneously turn on again and we will only see a permanently on LED.
+    void loop(){
+    // Here we will turn the LED ON and wait 200 miliseconds
+    digitalWrite(LED, HIGH);
+    delay(200);
+    // Here we will turn the LED OFF and wait 200 miliseconds
+    digitalWrite(LED, LOW);
+    delay(200);
+    }</p>
+    
+    </section>
+    
+  </body>
+
+</html>
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
